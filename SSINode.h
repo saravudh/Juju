@@ -10,10 +10,16 @@
 
 @interface SSINode : NSObject {
 	NSString *name;
+	SSINode *parent;
+	SSINode *left;
+	SSINode *right;
 }
-
+@property (nonatomic,retain) SSINode *left;
+@property (nonatomic,retain) SSINode *right;
+@property (nonatomic,retain) SSINode *parent;
 @property (nonatomic,retain) NSString *name;
 
+-(id) initWithParent:(SSINode*) parent;
 -(SSINode*) appendChild:(SSINode*) aNode;
 -(SSINode*) removeChild:(SSINode*) aNode;
 -(NSArray*) childNodes;

@@ -11,6 +11,20 @@
 
 @implementation SSINode
 @synthesize name;
+@synthesize parent,left,right;
+
+-(id) init {
+	if (self = [self initWithParent:nil]) {
+		
+	}
+	return self;
+}
+-(id) initWithParent:(SSINode*) aParent {
+	if (self = [super init]) {
+		self.parent = aParent;
+	}
+	return self;
+}
 
 -(SSINode*) appendChild:(SSINode*) aNode {
 	[self doesNotRecognizeSelector:_cmd];

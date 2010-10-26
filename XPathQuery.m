@@ -28,15 +28,12 @@ SSNode *SSNodeForNode(xmlNodePtr currentNode, SSNode *parentNode)
 		if (currentNode->content && currentNode->content != (xmlChar *)-1) {
 			currentNodeContent = [NSString stringWithCString:(const char *)currentNode->content encoding:NSUTF8StringEncoding];
 			currentNodeContent = [currentNodeContent stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]];
-			NSLog(@"currentNodeContent : %@",currentNodeContent);
 		}
 
 		if ([currentNodeName isEqual:@"text"] && parentNode) {
-			NSLog(@"currentNodeContent2 : %@",currentNodeContent);
 			[parentNode appendTextContent:currentNodeContent];
 			return nil;
 		} else {
-			NSLog(@"currentNodeContent3 : %@",currentNodeContent);
 			resultNode = [SSNode new];
 			resultNode.name = currentNodeName;
 			[resultNode appendTextContent:currentNodeContent];

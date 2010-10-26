@@ -29,9 +29,7 @@
 }
 
 -(void) appendTextContent:(NSString*) aContent {
-	NSLog(@"append Text Text Text : %@",aContent);
 	if (aContent && [aContent length] > 0) {
-		NSLog(@"append Text Text Text ifififififif ");
 		SSTextNode *newNode = [[SSTextNode new]autorelease];
 		newNode.text = aContent;
 		[self appendChild:newNode];
@@ -58,7 +56,16 @@
 }
 
 -(SSINode*) appendChild:(SSINode*) aNode {
-	[childs addObject:aNode];
+	if (aNode) {
+		aNode.parent = self;
+		SSINode *lastChild = nil;
+		if ([self hasChildNodes]) {
+			lastChild = [childs lastObject];
+		}
+		lastChild.right = aNode;
+		aNode.left = lastChild;
+		[childs addObject:aNode];		
+	}
 	return aNode;
 }
 
