@@ -2,27 +2,17 @@
 //  SSNode.h
 //  Juju
 //
-//  Created by saravudh.sinsomros on 10/25/10.
+//  Created by Saravudh Sinsomros on 10/25/10.
 //  Copyright 2010 __MyCompanyName__. All rights reserved.
 //
 
 #import <Foundation/Foundation.h>
+#import "SSINode.h"
 
-
-@interface SSNode : NSObject {
-	NSString *name;
-	NSString *text;
+@interface SSNode : SSINode {
+	NSMutableArray *childs;
+	NSMutableArray *attributes;
 }
-@property (nonatomic,retain) NSString *name;
-@property (nonatomic,retain) NSString *text;
-
--(SSNode*) appendChild:(SSNode*) aNode;
--(SSNode*) removeChild:(SSNode*) aNode;
--(SSNodeList*) childNodes;
--(NSArray*) attributes;
--(SSNode*) firstChild;
--(SSNode*) lastChild;
--(BOOL) hasChildNodes;
--(BOOL) hasAttributes;
-
+-(void) appendTextContent:(NSString*) aContent;
+-(void) addAttribute:(NSDictionary*) aAttribute;
 @end

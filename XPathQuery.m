@@ -5,6 +5,7 @@
 //  Created by Matt Gallagher on 4/08/08.
 //  Copyright 2008 __MyCompanyName__. All rights reserved.
 //
+//  Modified by Saravudh Sinsomros on 25/10/2010.
 
 #import "XPathQuery.h"
 
@@ -13,92 +14,74 @@
 #import <libxml/HTMLparser.h>
 #import <libxml/xpath.h>
 #import <libxml/xpathInternals.h>
+#import "SSNode.h"
 
-NSDictionary *DictionaryForNode(xmlNodePtr currentNode, NSMutableDictionary *parentResult)
+SSNode *SSNodeForNode(xmlNodePtr currentNode, SSNode *parentNode)
 {
-  NSMutableDictionary *resultForNode = [NSMutableDictionary dictionary];
-
-  if (currentNode->name)
+//	NSMutableDictionary *resultForNode = [NSMutableDictionary dictionary];
+	
+	if (currentNode->name)
     {
-      NSString *currentNodeContent =
-        [NSString stringWithCString:(const char *)currentNode->name encoding:NSUTF8StringEncoding];
-      [resultForNode setObject:currentNodeContent forKey:@"nodeName"];
-    }
+		NSString *currentNodeName = [NSString stringWithCString:(const char *)currentNode->name encoding:NSUTF8StringEncoding];
+		SSNode *resultNode = nil;
+		NSString *currentNodeContent = nil;
+		if (currentNode->content && currentNode->content != (xmlChar *)-1) {
+			currentNodeContent = [NSString stringWithCString:(const char *)currentNode->content encoding:NSUTF8StringEncoding];
+			currentNodeContent = [currentNodeContent stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]];
+			NSLog(@"currentNodeContent : %@",currentNodeContent);
+		}
 
-  if (currentNode->content && currentNode->content != (xmlChar *)-1)
-    {
-      NSString *currentNodeContent =
-        [NSString stringWithCString:(const char *)currentNode->content encoding:NSUTF8StringEncoding];
+		if ([currentNodeName isEqual:@"text"] && parentNode) {
+			NSLog(@"currentNodeContent2 : %@",currentNodeContent);
+			[parentNode appendTextContent:currentNodeContent];
+			return nil;
+		} else {
+			NSLog(@"currentNodeContent3 : %@",currentNodeContent);
+			resultNode = [SSNode new];
+			resultNode.name = currentNodeName;
+			[resultNode appendTextContent:currentNodeContent];
+		}
 
-      if ([[resultForNode objectForKey:@"nodeName"] isEqual:@"text"] && parentResult)
-        {
-          [parentResult
-            setObject:
-              [currentNodeContent
-                stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]]
-            forKey:@"nodeContent"];
-          return nil;
-        }
-
-      [resultForNode setObject:currentNodeContent forKey:@"nodeContent"];
-    }
-
-  xmlAttr *attribute = currentNode->properties;
-  if (attribute)
-    {
-      NSMutableArray *attributeArray = [NSMutableArray array];
-      while (attribute)
-        {
-          NSMutableDictionary *attributeDictionary = [NSMutableDictionary dictionary];
-          NSString *attributeName =
+	
+	xmlAttr *attribute = currentNode->properties;
+	if (attribute) {
+		while (attribute) {
+			NSMutableDictionary *attributeDictionary = [NSMutableDictionary dictionary];
+			NSString *attributeName =
             [NSString stringWithCString:(const char *)attribute->name encoding:NSUTF8StringEncoding];
-          if (attributeName)
-            {
-              [attributeDictionary setObject:attributeName forKey:@"attributeName"];
+			if (attributeName) {
+				[attributeDictionary setObject:attributeName forKey:@"attributeName"];
             }
+			
+			if (attribute->children) {
 
-          if (attribute->children)
-            {
-              NSDictionary *childDictionary = DictionaryForNode(attribute->children, attributeDictionary);
-              if (childDictionary)
-                {
-                  [attributeDictionary setObject:childDictionary forKey:@"attributeContent"];
-                }
+				if (attribute->children->content && attribute->children->content != (xmlChar *)-1) {
+					NSString *currentNodeContent = [NSString stringWithCString:(const char *)attribute->children->content encoding:NSUTF8StringEncoding];
+					currentNodeContent = [currentNodeContent stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]];
+					[attributeDictionary setObject:currentNodeContent forKey:@"attributeContent"];
+				}
             }
-
-          if ([attributeDictionary count] > 0)
-            {
-              [attributeArray addObject:attributeDictionary];
+			
+			if ([attributeDictionary count] > 0) {
+				[resultNode addAttribute:attributeDictionary];
             }
-          attribute = attribute->next;
-        }
-
-      if ([attributeArray count] > 0)
-        {
-          [resultForNode setObject:attributeArray forKey:@"nodeAttributeArray"];
+			attribute = attribute->next;
         }
     }
-
-  xmlNodePtr childNode = currentNode->children;
-  if (childNode)
-    {
-      NSMutableArray *childContentArray = [NSMutableArray array];
-      while (childNode)
-        {
-          NSDictionary *childDictionary = DictionaryForNode(childNode, resultForNode);
-          if (childDictionary)
-            {
-              [childContentArray addObject:childDictionary];
-            }
-          childNode = childNode->next;
-        }
-      if ([childContentArray count] > 0)
-        {
-          [resultForNode setObject:childContentArray forKey:@"nodeChildArray"];
-        }
-    }
-
-  return resultForNode;
+	
+		xmlNodePtr childNode = currentNode->children;
+		if (childNode) {
+			while (childNode) {
+				SSNode *childWrapperNode = SSNodeForNode(childNode,resultNode);
+				if (childWrapperNode) {
+					[resultNode appendChild:childWrapperNode];
+				}
+				childNode = childNode->next;
+			}
+		}
+		return resultNode;
+	}
+	return nil;
 }
 
 NSArray *PerformXPathQuery(xmlDocPtr doc, NSString *query)
@@ -131,10 +114,11 @@ NSArray *PerformXPathQuery(xmlDocPtr doc, NSString *query)
   NSMutableArray *resultNodes = [NSMutableArray array];
   for (NSInteger i = 0; i < nodes->nodeNr; i++)
     {
-      NSDictionary *nodeDictionary = DictionaryForNode(nodes->nodeTab[i], nil);
-      if (nodeDictionary)
+		SSNode *node = SSNodeForNode(nodes->nodeTab[i], nil);
+//		NSDictionary *node = DictionaryForNode(nodes->nodeTab[i], nil);
+      if (node)
         {
-          [resultNodes addObject:nodeDictionary];
+          [resultNodes addObject:node];
         }
     }
 

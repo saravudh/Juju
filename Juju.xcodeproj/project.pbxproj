@@ -11,14 +11,14 @@
 		AACBBE4A0F95108600F1A2B1 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AACBBE490F95108600F1A2B1 /* Foundation.framework */; };
 		BD69E85A1275A5DA00B3C36A /* XPathQuery.m in Sources */ = {isa = PBXBuildFile; fileRef = BD69E8561275A5DA00B3C36A /* XPathQuery.m */; };
 		BD69E85B1275A5DA00B3C36A /* XPathQuery.h in Headers */ = {isa = PBXBuildFile; fileRef = BD69E8571275A5DA00B3C36A /* XPathQuery.h */; };
-		BD69E85C1275A5DA00B3C36A /* XPathQuery+Addition.h in Headers */ = {isa = PBXBuildFile; fileRef = BD69E8581275A5DA00B3C36A /* XPathQuery+Addition.h */; };
-		BD69E85D1275A5DA00B3C36A /* XPathQuery+Addition.m in Sources */ = {isa = PBXBuildFile; fileRef = BD69E8591275A5DA00B3C36A /* XPathQuery+Addition.m */; };
 		BD69E8601275A63800B3C36A /* SSJuju.h in Headers */ = {isa = PBXBuildFile; fileRef = BD69E85E1275A63800B3C36A /* SSJuju.h */; };
 		BD69E8611275A63800B3C36A /* SSJuju.m in Sources */ = {isa = PBXBuildFile; fileRef = BD69E85F1275A63800B3C36A /* SSJuju.m */; };
-		BD69E8641275A64000B3C36A /* SSNodeList.h in Headers */ = {isa = PBXBuildFile; fileRef = BD69E8621275A64000B3C36A /* SSNodeList.h */; };
-		BD69E8651275A64000B3C36A /* SSNodeList.m in Sources */ = {isa = PBXBuildFile; fileRef = BD69E8631275A64000B3C36A /* SSNodeList.m */; };
 		BD69E8681275A64600B3C36A /* SSNode.h in Headers */ = {isa = PBXBuildFile; fileRef = BD69E8661275A64600B3C36A /* SSNode.h */; };
 		BD69E8691275A64600B3C36A /* SSNode.m in Sources */ = {isa = PBXBuildFile; fileRef = BD69E8671275A64600B3C36A /* SSNode.m */; };
+		BD69E9571275EC4000B3C36A /* SSTextNode.h in Headers */ = {isa = PBXBuildFile; fileRef = BD69E9551275EC4000B3C36A /* SSTextNode.h */; };
+		BD69E9581275EC4000B3C36A /* SSTextNode.m in Sources */ = {isa = PBXBuildFile; fileRef = BD69E9561275EC4000B3C36A /* SSTextNode.m */; };
+		BD69E95B1275F04C00B3C36A /* SSINode.h in Headers */ = {isa = PBXBuildFile; fileRef = BD69E9591275F04C00B3C36A /* SSINode.h */; };
+		BD69E95C1275F04C00B3C36A /* SSINode.m in Sources */ = {isa = PBXBuildFile; fileRef = BD69E95A1275F04C00B3C36A /* SSINode.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -26,14 +26,14 @@
 		AACBBE490F95108600F1A2B1 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		BD69E8561275A5DA00B3C36A /* XPathQuery.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XPathQuery.m; sourceTree = "<group>"; };
 		BD69E8571275A5DA00B3C36A /* XPathQuery.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XPathQuery.h; sourceTree = "<group>"; };
-		BD69E8581275A5DA00B3C36A /* XPathQuery+Addition.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "XPathQuery+Addition.h"; sourceTree = "<group>"; };
-		BD69E8591275A5DA00B3C36A /* XPathQuery+Addition.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "XPathQuery+Addition.m"; sourceTree = "<group>"; };
 		BD69E85E1275A63800B3C36A /* SSJuju.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SSJuju.h; sourceTree = "<group>"; };
 		BD69E85F1275A63800B3C36A /* SSJuju.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SSJuju.m; sourceTree = "<group>"; };
-		BD69E8621275A64000B3C36A /* SSNodeList.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SSNodeList.h; sourceTree = "<group>"; };
-		BD69E8631275A64000B3C36A /* SSNodeList.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SSNodeList.m; sourceTree = "<group>"; };
 		BD69E8661275A64600B3C36A /* SSNode.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SSNode.h; sourceTree = "<group>"; };
 		BD69E8671275A64600B3C36A /* SSNode.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SSNode.m; sourceTree = "<group>"; };
+		BD69E9551275EC4000B3C36A /* SSTextNode.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SSTextNode.h; sourceTree = "<group>"; };
+		BD69E9561275EC4000B3C36A /* SSTextNode.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SSTextNode.m; sourceTree = "<group>"; };
+		BD69E9591275F04C00B3C36A /* SSINode.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SSINode.h; sourceTree = "<group>"; };
+		BD69E95A1275F04C00B3C36A /* SSINode.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SSINode.m; sourceTree = "<group>"; };
 		D2AAC07E0554694100DB518D /* libJuju.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libJuju.a; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
@@ -82,10 +82,12 @@
 				BD69E8551275A5DA00B3C36A /* XPath */,
 				BD69E85E1275A63800B3C36A /* SSJuju.h */,
 				BD69E85F1275A63800B3C36A /* SSJuju.m */,
-				BD69E8621275A64000B3C36A /* SSNodeList.h */,
-				BD69E8631275A64000B3C36A /* SSNodeList.m */,
 				BD69E8661275A64600B3C36A /* SSNode.h */,
 				BD69E8671275A64600B3C36A /* SSNode.m */,
+				BD69E9551275EC4000B3C36A /* SSTextNode.h */,
+				BD69E9561275EC4000B3C36A /* SSTextNode.m */,
+				BD69E9591275F04C00B3C36A /* SSINode.h */,
+				BD69E95A1275F04C00B3C36A /* SSINode.m */,
 			);
 			name = Classes;
 			sourceTree = "<group>";
@@ -101,10 +103,8 @@
 		BD69E8551275A5DA00B3C36A /* XPath */ = {
 			isa = PBXGroup;
 			children = (
-				BD69E8561275A5DA00B3C36A /* XPathQuery.m */,
 				BD69E8571275A5DA00B3C36A /* XPathQuery.h */,
-				BD69E8581275A5DA00B3C36A /* XPathQuery+Addition.h */,
-				BD69E8591275A5DA00B3C36A /* XPathQuery+Addition.m */,
+				BD69E8561275A5DA00B3C36A /* XPathQuery.m */,
 			);
 			name = XPath;
 			sourceTree = "<group>";
@@ -118,10 +118,10 @@
 			files = (
 				AA747D9F0F9514B9006C5449 /* Juju_Prefix.pch in Headers */,
 				BD69E85B1275A5DA00B3C36A /* XPathQuery.h in Headers */,
-				BD69E85C1275A5DA00B3C36A /* XPathQuery+Addition.h in Headers */,
 				BD69E8601275A63800B3C36A /* SSJuju.h in Headers */,
-				BD69E8641275A64000B3C36A /* SSNodeList.h in Headers */,
 				BD69E8681275A64600B3C36A /* SSNode.h in Headers */,
+				BD69E9571275EC4000B3C36A /* SSTextNode.h in Headers */,
+				BD69E95B1275F04C00B3C36A /* SSINode.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -176,10 +176,10 @@
 			buildActionMask = 2147483647;
 			files = (
 				BD69E85A1275A5DA00B3C36A /* XPathQuery.m in Sources */,
-				BD69E85D1275A5DA00B3C36A /* XPathQuery+Addition.m in Sources */,
 				BD69E8611275A63800B3C36A /* SSJuju.m in Sources */,
-				BD69E8651275A64000B3C36A /* SSNodeList.m in Sources */,
 				BD69E8691275A64600B3C36A /* SSNode.m in Sources */,
+				BD69E9581275EC4000B3C36A /* SSTextNode.m in Sources */,
+				BD69E95C1275F04C00B3C36A /* SSINode.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -199,6 +199,7 @@
 				GCC_OPTIMIZATION_LEVEL = 0;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = Juju_Prefix.pch;
+				HEADER_SEARCH_PATHS = "$(SDKROOT)/usr/include/libxml2";
 				INSTALL_PATH = /usr/local/lib;
 				PRODUCT_NAME = Juju;
 			};
