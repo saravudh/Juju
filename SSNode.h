@@ -13,6 +13,9 @@
 	NSMutableArray *childs;
 	NSMutableArray *attributes;
 }
+
 -(void) appendTextContent:(NSString*) aContent;
 -(void) addAttribute:(NSDictionary*) aAttribute;
+//Creates and returns an empty SSNode
++(id) node;
 @end

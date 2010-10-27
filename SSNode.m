@@ -14,6 +14,10 @@
 
 @implementation SSNode
 
++(id) node {
+	return [[SSNode new]autorelease];
+}
+
 -(id) init {
 	if (self = [super init]) {
 		childs = [NSMutableArray new];
@@ -70,7 +74,7 @@
 }
 
 -(NSArray*) childNodes {
-	return [childs copy];
+	return childs;
 }
 
 -(SSINode*) firstChild {

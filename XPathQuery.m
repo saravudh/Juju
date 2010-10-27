@@ -18,8 +18,6 @@
 
 SSNode *SSNodeForNode(xmlNodePtr currentNode, SSNode *parentNode)
 {
-//	NSMutableDictionary *resultForNode = [NSMutableDictionary dictionary];
-	
 	if (currentNode->name)
     {
 		NSString *currentNodeName = [NSString stringWithCString:(const char *)currentNode->name encoding:NSUTF8StringEncoding];
@@ -34,7 +32,7 @@ SSNode *SSNodeForNode(xmlNodePtr currentNode, SSNode *parentNode)
 			[parentNode appendTextContent:currentNodeContent];
 			return nil;
 		} else {
-			resultNode = [SSNode new];
+			resultNode = [SSNode node];
 			resultNode.name = currentNodeName;
 			[resultNode appendTextContent:currentNodeContent];
 		}
@@ -81,15 +79,13 @@ SSNode *SSNodeForNode(xmlNodePtr currentNode, SSNode *parentNode)
 	return nil;
 }
 
-NSArray *PerformXPathQuery(xmlDocPtr doc, NSString *query)
-{
+NSArray *PerformXPathQuery(xmlDocPtr doc, NSString *query) {
   xmlXPathContextPtr xpathCtx;
   xmlXPathObjectPtr xpathObj;
 
   /* Create xpath evaluation context */
   xpathCtx = xmlXPathNewContext(doc);
-  if(xpathCtx == NULL)
-    {
+  if(xpathCtx == NULL) {
       NSLog(@"Unable to create XPath context.");
       return nil;
     }
@@ -102,19 +98,15 @@ NSArray *PerformXPathQuery(xmlDocPtr doc, NSString *query)
   }
 
   xmlNodeSetPtr nodes = xpathObj->nodesetval;
-  if (!nodes)
-    {
+  if (!nodes) {
       NSLog(@"Nodes was nil.");
       return nil;
     }
 
   NSMutableArray *resultNodes = [NSMutableArray array];
-  for (NSInteger i = 0; i < nodes->nodeNr; i++)
-    {
+  for (NSInteger i = 0; i < nodes->nodeNr; i++) {
 		SSNode *node = SSNodeForNode(nodes->nodeTab[i], nil);
-//		NSDictionary *node = DictionaryForNode(nodes->nodeTab[i], nil);
-      if (node)
-        {
+		if (node) {
           [resultNodes addObject:node];
         }
     }

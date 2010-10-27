@@ -12,43 +12,35 @@
 @implementation SSJuju
 @synthesize data;
 
-- (void) dealloc
-{
+- (void) dealloc {
 	[data release];
 	[super dealloc];
 }
 
-- (id) initWithData:(NSData *)theData isXML:(BOOL)isDataXML
-{
-	if (!(self = [super init]))
-		return nil;
-	
-	self.data = theData;
-	isXML = isDataXML;
-	
+- (id) initWithData:(NSData *)theData isXML:(BOOL)isDataXML {
+	if (self = [super init]) {
+		self.data = theData;
+		isXML = isDataXML;
+	}	
 	return self;
 }
 
-- (id) initWithXMLData:(NSData *)theData
-{
+- (id) initWithXMLData:(NSData *)theData {
 	return [self initWithData:theData isXML:YES];
 }
 
-- (id) initWithHTMLData:(NSData *)theData
-{
+- (id) initWithHTMLData:(NSData *)theData {
 	return [self initWithData:theData isXML:NO];
 }
 
 // Returns all elements at xPath.
-- (NSArray *) search:(NSString *)xPathOrCSS
-{
+- (NSArray *) search:(NSString *)xPathOrCSS {
 	NSArray * detailNodes;
 	if (isXML) {
 		detailNodes = PerformXMLXPathQuery(data, xPathOrCSS);
 	} else {
 		detailNodes = PerformHTMLXPathQuery(data, xPathOrCSS);
 	}
-	
 	return detailNodes;
 }
 
