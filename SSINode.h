@@ -24,6 +24,7 @@
 -(SSINode*) removeChild:(SSINode*) aNode;
 -(NSArray*) childNodes;
 -(NSArray*) attributes;
+-(NSString*) attributeByName:(NSString*) aName;
 -(SSINode*) firstChild;
 -(SSINode*) lastChild;
 -(BOOL) hasChildNodes;

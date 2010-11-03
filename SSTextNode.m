@@ -26,7 +26,9 @@
 -(NSString*) name {
 	return @"#text";
 }
-
+-(NSString*) attributeByName:(NSString*) name {
+	return nil;
+}
 
 -(SSINode*) appendChild:(SSINode*) aNode {
 	return nil;

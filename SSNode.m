@@ -44,6 +44,15 @@
 	[attributes addObject:aAttribute];
 }
 
+-(NSString*) attributeByName:(NSString*) aName {
+	for (NSDictionary *d in attributes) {
+		if ([[d objectForKey:@"attributeName"] isEqualToString:aName]) {
+			return [d objectForKey:@"attributeContent"];
+		}
+	}
+	return nil;
+}
+
 -(NSString*) description {
 	NSMutableString *descriptionString = [[NSMutableString new]autorelease];
 	NSString *attributeStr = [self attributeString];

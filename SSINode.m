@@ -61,6 +61,11 @@
 	[self doesNotRecognizeSelector:_cmd];
 	return nil;
 }
+-(NSString*) attributeByName:(NSString*) aName {
+	[self doesNotRecognizeSelector:_cmd];
+	return nil;
+}
+
 -(BOOL) hasAttributes {
 	[self doesNotRecognizeSelector:_cmd];
 	return NO;
