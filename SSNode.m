@@ -109,12 +109,10 @@
 	return nil;
 }
 -(NSArray*) attributes {
-	[self doesNotRecognizeSelector:_cmd];
-	return nil;
+	return attributes;
 }
 -(BOOL) hasAttributes {
-	[self doesNotRecognizeSelector:_cmd];
-	return NO;
+	return [attributes count] > 0;
 }
 #pragma mark Private
 -(NSString*) attributeString {
