@@ -19,6 +19,10 @@
 	}
 	return self;
 }
+-(void) dealloc {
+	[name release];
+	[super dealloc];
+}
 -(id) initWithParent:(SSINode*) aParent {
 	if (self = [super init]) {
 		self.parent = aParent;

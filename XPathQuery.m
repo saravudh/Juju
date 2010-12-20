@@ -63,16 +63,14 @@ SSNode *SSNodeForNode(xmlNodePtr currentNode, SSNode *parentNode)
 			attribute = attribute->next;
         }
     }
-	
+
 		xmlNodePtr childNode = currentNode->children;
-		if (childNode) {
-			while (childNode) {
-				SSNode *childWrapperNode = SSNodeForNode(childNode,resultNode);
-				if (childWrapperNode) {
-					[resultNode appendChild:childWrapperNode];
-				}
-				childNode = childNode->next;
+		while (childNode) {
+			SSNode *childWrapperNode = SSNodeForNode(childNode,resultNode);
+			if (childWrapperNode) {
+				[resultNode appendChild:childWrapperNode];
 			}
+			childNode = childNode->next;
 		}
 		return resultNode;
 	}

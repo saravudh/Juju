@@ -14,9 +14,9 @@
 	SSINode *left;
 	SSINode *right;
 }
-@property (nonatomic,retain) SSINode *left;
-@property (nonatomic,retain) SSINode *right;
-@property (nonatomic,retain) SSINode *parent;
+@property (assign) SSINode *left;
+@property (assign) SSINode *right;
+@property (assign) SSINode *parent;
 @property (nonatomic,retain) NSString *name;
 
 -(id) initWithParent:(SSINode*) parent;
