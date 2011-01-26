@@ -21,7 +21,7 @@ Saravudh Sinsomros
 
 # USAGE
 
-<pre>
+<pre><code>
 #import "SSJuju.h"
 #import "SSNode.h"
 
@@ -38,10 +38,9 @@ for (SSNode *e in elements) {
 		NSLog(@"%@ : %@ : %@",idValue,nodeName,nodeValue);
 	} while ((bNode = bNode.right));// Access to sibling node
 }
-</pre>
+</code></pre>
 
 ### Result
-<pre>
 1 : b : One
+
 2 : b : Two
-</pre>
