@@ -25,7 +25,7 @@ Saravudh Sinsomros
 #import "SSJuju.h"
 #import "SSNode.h"
 
-NSString *htmlstr = @"<html><a class='awesome'><b id='1'>One</b><b id='2'>Two</b></a></html>";
+NSString *htmlstr = @"&lt;html&gt;&lt;a class='awesome'&gt;&lt;b id='1'&gt;One&lt;/b&gt;&lt;b id='2'&gt;Two&lt;/b&gt;&lt;/a&gt;&lt;/html&gt;";
 NSData *htmlData = [htmlstr dataUsingEncoding:NSASCIIStringEncoding];
 SSJuju *doc = [[[SSJuju alloc] initWithHTMLData:htmlData] autorelease];
 NSArray *elements = [doc search:@"//a[@class='awesome']"];
