@@ -30,13 +30,13 @@ NSData *htmlData = [htmlstr dataUsingEncoding:NSASCIIStringEncoding];
 SSJuju *doc = [[[SSJuju alloc] initWithHTMLData:htmlData] autorelease];
 NSArray *elements = [doc search:@"//a[@class='awesome']"];
 for (SSNode *e in elements) {
-	SSINode *bNode = [e firstChild];						// Node "b"
+	SSINode *bNode = [e firstChild];								// Node "b"
 	do {
-		NSString *idValue = [bNode attributeByName:@"id"]; 	// Easy access to attribute
-		NSString *nodeName = [bNode name];					//tag name
+		NSString *idValue = [bNode attributeByName:@"id"]; 			// Easy access to attribute
+		NSString *nodeName = [bNode name];							//tag name
 		NSString *nodeValue = [[bNode firstChild] description];
 		NSLog(@"%@ : %@ : %@",idValue,nodeName,nodeValue);
-	} while ((bNode = bNode.right));// Access to sibling node
+	} while ((bNode = bNode.right));								// Access to sibling node
 }
 </code></pre>
 
