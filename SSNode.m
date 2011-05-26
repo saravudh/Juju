@@ -10,6 +10,8 @@
 #import "SSTextNode.h"
 @interface SSNode(Private)
 -(NSString*) attributeString;
+-(NSString*) attributeStringEncloseWithQuote;
+-(NSString*) attributeStringEncloseWithDoubleQuote;
 @end
 
 @implementation SSNode
@@ -55,12 +57,23 @@
 }
 
 -(NSString*) description {
+	return [self description:ENCLOSE_TYPE_NO_ENCLOSE];
+}
+
+-(NSString*) description:(ENCLOSE_TYPE) encloseType {
 	NSMutableString *descriptionString = [[NSMutableString new]autorelease];
-	NSString *attributeStr = [self attributeString];
+	NSString *attributeStr;
+    if (encloseType == ENCLOSE_TYPE_NO_ENCLOSE) {
+        attributeStr = [self attributeString];
+    } else if (encloseType == ENCLOSE_TYPE_WITH_QUOTE) {
+        attributeStr = [self attributeStringEncloseWithQuote];
+    } else {
+        attributeStr = [self attributeStringEncloseWithDoubleQuote];
+    }
 	if ([self hasChildNodes]) {
 		[descriptionString appendFormat:@"<%@%@>",self.name,attributeStr];
-		for (SSINode *child in childs) {
-			[descriptionString appendString:[child description]];
+		for (SSNode *child in childs) {
+			[descriptionString appendString:[child description:encloseType]];
 		}
 		[descriptionString appendFormat:@"</%@>",self.name];
 	} else {
@@ -116,7 +129,7 @@
 	return [attributes count] > 0;
 }
 #pragma mark Private
--(NSString*) attributeString {
+-(NSString*) attributeStringEncloseWithQuote {
 	NSMutableString *result = [[NSMutableString new]autorelease];
 	for (NSDictionary *attr in attributes) {
         NSString *attrValue = [attr objectForKey:@"attributeContent"];
@@ -126,4 +139,23 @@
 	}
 	return result;
 }
+
+-(NSString*) attributeStringEncloseWithDoubleQuote {
+	NSMutableString *result = [[NSMutableString new]autorelease];
+	for (NSDictionary *attr in attributes) {
+        NSString *attrValue = [attr objectForKey:@"attributeContent"];
+        NSMutableString *attrValueTmp = [NSMutableString stringWithString:attrValue];
+        [attrValueTmp replaceOccurrencesOfString:@"\"" withString:@"&#34;" options:NSCaseInsensitiveSearch range:NSMakeRange(0, [attrValueTmp length])];
+		[result appendFormat:@" %@=\"%@\"",[attr objectForKey:@"attributeName"],attrValueTmp];
+	}
+	return result;
+}
+-(NSString*) attributeString {
+	NSMutableString *result = [[NSMutableString new]autorelease];
+	for (NSDictionary *attr in attributes) {
+		[result appendFormat:@" %@=%@",[attr objectForKey:@"attributeName"],[attr objectForKey:@"attributeContent"]];
+	}
+	return result;
+}
+
 @end

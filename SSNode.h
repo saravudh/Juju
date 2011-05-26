@@ -9,6 +9,12 @@
 #import <Foundation/Foundation.h>
 #import "SSINode.h"
 
+typedef enum {
+	ENCLOSE_TYPE_NO_ENCLOSE = 0,
+	ENCLOSE_TYPE_WITH_QUOTE,
+	ENCLOSE_TYPE_WITH_DOUBLE_QUOTE
+} ENCLOSE_TYPE;
+
 @interface SSNode : SSINode {
 	NSMutableArray *childs;
 	NSMutableArray *attributes;
@@ -16,6 +22,7 @@
 
 -(void) appendTextContent:(NSString*) aContent;
 -(void) addAttribute:(NSDictionary*) aAttribute;
+-(NSString*) description:(ENCLOSE_TYPE) encloseType;
 //Creates and returns an empty SSNode
 +(id) node;
 @end
