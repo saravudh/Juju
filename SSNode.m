@@ -19,7 +19,8 @@
 }
 
 -(id) init {
-	if (self = [super init]) {
+    self = [super init];
+	if (self) {
 		childs = [NSMutableArray new];
 		attributes = [NSMutableArray new];
 	}
@@ -118,7 +119,10 @@
 -(NSString*) attributeString {
 	NSMutableString *result = [[NSMutableString new]autorelease];
 	for (NSDictionary *attr in attributes) {
-		[result appendFormat:@" %@=%@",[attr objectForKey:@"attributeName"],[attr objectForKey:@"attributeContent"]];
+        NSString *attrValue = [attr objectForKey:@"attributeContent"];
+        NSMutableString *attrValueTmp = [NSMutableString stringWithString:attrValue];
+        [attrValueTmp replaceOccurrencesOfString:@"'" withString:@"&#39;" options:NSCaseInsensitiveSearch range:NSMakeRange(0, [attrValueTmp length])];
+		[result appendFormat:@" %@='%@'",[attr objectForKey:@"attributeName"],attrValueTmp];
 	}
 	return result;
 }
