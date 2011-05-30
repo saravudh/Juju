@@ -22,6 +22,9 @@
 -(NSString*) description {
 	return self.text;
 }
+-(NSString*) description:(ENCLOSE_TYPE) encloseType {
+	return [self description];
+}
 
 -(NSString*) name {
 	return @"#text";
