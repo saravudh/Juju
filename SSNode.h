@@ -23,6 +23,8 @@ typedef enum {
 -(void) appendTextContent:(NSString*) aContent;
 -(void) addAttribute:(NSDictionary*) aAttribute;
 -(NSString*) description:(ENCLOSE_TYPE) encloseType;
+-(NSArray*) allChildsWith:(NSString*) aNodeName;
+
 //Creates and returns an empty SSNode
 +(id) node;
 @end

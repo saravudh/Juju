@@ -128,6 +128,18 @@
 -(BOOL) hasAttributes {
 	return [attributes count] > 0;
 }
+
+-(NSArray*) allChildsWith:(NSString*) aNodeName {
+	NSMutableArray *result = [NSMutableArray array];
+	for (SSINode *c in [self childNodes]) {
+		NSString *cName = [[c name] lowercaseString];
+		if ([cName isEqualToString:aNodeName]) {
+			[result addObject:c];
+		}
+	}
+	return result;
+}
+
 #pragma mark Private
 -(NSString*) attributeStringEncloseWithQuote {
 	NSMutableString *result = [[NSMutableString new]autorelease];
