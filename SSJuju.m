@@ -12,11 +12,6 @@
 @implementation SSJuju
 @synthesize data;
 
-- (void) dealloc {
-	[data release];
-	[super dealloc];
-}
-
 - (id) initWithData:(NSData *)theData isXML:(BOOL)isDataXML {
 	if (self = [super init]) {
 		self.data = theData;

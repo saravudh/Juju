@@ -17,7 +17,7 @@
 @implementation SSNode
 
 +(id) node {
-	return [[SSNode new]autorelease];
+	return [SSNode new];
 }
 
 -(id) init {
@@ -29,15 +29,9 @@
 	return self;
 }
 
--(void) dealloc {
-	[attributes release];
-	[childs release];
-	[super dealloc];
-}
-
 -(void) appendTextContent:(NSString*) aContent {
 	if (aContent && [aContent length] > 0) {
-		SSTextNode *newNode = [[SSTextNode new]autorelease];
+		SSTextNode *newNode = [SSTextNode new];
 		newNode.text = aContent;
 		[self appendChild:newNode];
 	}
@@ -61,7 +55,7 @@
 }
 
 -(NSString*) description:(ENCLOSE_TYPE) encloseType {
-	NSMutableString *descriptionString = [[NSMutableString new]autorelease];
+	NSMutableString *descriptionString = [NSMutableString new];
 	NSString *attributeStr;
     if (encloseType == ENCLOSE_TYPE_NO_ENCLOSE) {
         attributeStr = [self attributeString];
@@ -142,7 +136,7 @@
 
 #pragma mark Private
 -(NSString*) attributeStringEncloseWithQuote {
-	NSMutableString *result = [[NSMutableString new]autorelease];
+	NSMutableString *result = [NSMutableString new];
 	for (NSDictionary *attr in attributes) {
         NSString *attrValue = [attr objectForKey:@"attributeContent"];
         NSMutableString *attrValueTmp = [NSMutableString stringWithString:attrValue];
@@ -153,7 +147,7 @@
 }
 
 -(NSString*) attributeStringEncloseWithDoubleQuote {
-	NSMutableString *result = [[NSMutableString new]autorelease];
+	NSMutableString *result = [NSMutableString new];
 	for (NSDictionary *attr in attributes) {
         NSString *attrValue = [attr objectForKey:@"attributeContent"];
         NSMutableString *attrValueTmp = [NSMutableString stringWithString:attrValue];
@@ -163,7 +157,7 @@
 	return result;
 }
 -(NSString*) attributeString {
-	NSMutableString *result = [[NSMutableString new]autorelease];
+	NSMutableString *result = [NSMutableString new];
 	for (NSDictionary *attr in attributes) {
 		[result appendFormat:@" %@=%@",[attr objectForKey:@"attributeName"],[attr objectForKey:@"attributeContent"]];
 	}

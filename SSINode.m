@@ -10,8 +10,6 @@
 
 
 @implementation SSINode
-@synthesize name;
-@synthesize parent,left,right;
 
 -(id) init {
 	if (self = [self initWithParent:nil]) {
@@ -19,10 +17,7 @@
 	}
 	return self;
 }
--(void) dealloc {
-	[name release];
-	[super dealloc];
-}
+
 -(id) initWithParent:(SSINode*) aParent {
 	if (self = [super init]) {
 		self.parent = aParent;

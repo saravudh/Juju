@@ -55,8 +55,6 @@
 -(NSArray*) attributes {
 	return nil;
 }
--(void) dealloc {
-	[text release];
-	[super dealloc];
-}
+
+
 @end

@@ -6,7 +6,7 @@
 //  Copyright 2010 __MyCompanyName__. All rights reserved.
 //
 
-#import <Foundation/Foundation.h>
+
 @class SSNodeList;
 
 @interface SSJuju : NSObject {
@@ -14,7 +14,7 @@
 	BOOL isXML;
 }
 
-@property (retain) NSData * data;
+@property (strong) NSData * data;
 
 - (id) initWithData:(NSData *)theData isXML:(BOOL)isDataXML;
 

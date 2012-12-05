@@ -6,18 +6,14 @@
 //  Copyright 2010 __MyCompanyName__. All rights reserved.
 //
 
-#import <Foundation/Foundation.h>
-
 @interface SSINode : NSObject {
-	NSString *name;
-	SSINode *parent;
-	SSINode *left;
-	SSINode *right;
+
 }
-@property (assign) SSINode *left;
-@property (assign) SSINode *right;
-@property (assign) SSINode *parent;
-@property (nonatomic,retain) NSString *name;
+
+@property (weak) SSINode *left;
+@property (weak) SSINode *right;
+@property (weak) SSINode *parent;
+@property (nonatomic,strong) NSString *name;
 
 -(id) initWithParent:(SSINode*) parent;
 -(SSINode*) appendChild:(SSINode*) aNode;
